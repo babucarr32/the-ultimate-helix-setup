@@ -1,0 +1,50 @@
+theme = "ayu_evolve"
+
+[keys.normal]
+C-j = ["extend_to_line_bounds", "delete_selection", "paste_after"]
+C-k = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before"]
+
+# For lazygit
+C-g = [":new", ":insert-output lazygit", ":buffer-close!", ":redraw"]
+
+# For pasting ipconfig
+C-p = [":run-shell-command ifconfig | grep '192' | pbcopy"]
+# "A-y" = ["hover", "select_all"]
+# Disable Arrow keys
+up = "no_op"
+down = "no_op"
+left = "no_op"
+right = "no_op"
+pageup = "no_op"
+pagedown = "no_op"
+home = "no_op"
+end = "no_op"
+
+[keys.insert]
+# Exit insert mode
+"A-i" = "normal_mode"
+
+# Disable Arrow keys
+up = "no_op"
+down = "no_op"
+left = "no_op"
+right = "no_op"
+pageup = "no_op"
+pagedown = "no_op"
+home = "no_op"
+end = "no_op"
+
+[editor]
+end-of-line-diagnostics = "hint"
+mouse = false
+middle-click-paste = false
+
+[editor.inline-diagnostics]
+cursor-line = "error"
+
+# Configure the status line
+[editor.statusline]
+right = ["total-line-numbers", "diagnostics", "selections", "position", "file-type"]
+
+[editor.file-picker]
+hidden = false
