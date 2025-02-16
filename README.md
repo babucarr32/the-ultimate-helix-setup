@@ -286,7 +286,7 @@ Install pipx if not available
 brew install pipx
 pipx ensurepath
 sudo pipx ensurepath --global # optional to allow pipx actions with --global argument
-
+```
 Install python-lsp-server
 ```.sh
 pipx install python-lsp-server
@@ -331,3 +331,5 @@ source = { git = "https://github.com/tree-sitter/tree-sitter-python", rev = "4bf
 ### Key Bindings
 
 ### Tools
+
+## Do you have a configuration that is not included here? Share it with the community 😉.
