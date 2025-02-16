@@ -1,5 +1,5 @@
 # The Ultimate Helix Setup
-
+![A beautiful image of helix logo added in the ultimate helix  setup project](/images/the-ultimate-helix-setup.png)
 ### Languages.toml
 ---
 #### HTML, CSS, and SCSS
