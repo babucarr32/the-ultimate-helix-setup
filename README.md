@@ -149,6 +149,7 @@ source = { git = "https://github.com/tree-sitter/tree-sitter-typescript", rev = 
 Installation: 
 
 `brew install vale`
+
 Download and install the latest release of `vale-ls` from [here](https://github.com/errata-ai/vale-ls/releases)
 
 Read more:
