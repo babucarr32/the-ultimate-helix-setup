@@ -2,6 +2,139 @@
 ![A beautiful image of helix logo added in the ultimate helix  setup project](/images/the-ultimate-helix-setup.png)
 ### Languages.toml
 ---
+#### Bash
+Installation: 
+
+`npm i -g bash-language-server`
+
+Or
+
+`dnf install -y nodejs-bash-language-server`
+
+Or
+
+`sudo snap install bash-language-server --classic`
+
+To verify that everything is working
+
+`bash-language-server --help`
+
+Read more: [bash-language-server](https://github.com/bash-lsp/bash-language-server)
+
+Append `bash-language-server` to your `language-servers`
+
+languages.toml
+```.toml 
+[[language]]
+name = "bash"
+scope = "source.bash"
+injection-regex = "(shell|bash|zsh|sh)"
+file-types = [
+  "sh",
+  "bash",
+  "ash",
+  "dash",
+  "ksh",
+  "mksh",
+  "zsh",
+  "zshenv",
+  "zlogin",
+  "zlogout",
+  "zprofile",
+  "zshrc",
+  "eclass",
+  "ebuild",
+  "bazelrc",
+  "Renviron",
+  "zsh-theme",
+  "cshrc",
+  "tcshrc",
+  "bashrc_Apple_Terminal",
+  "zshrc_Apple_Terminal",
+  { glob = "i3/config" },
+  { glob = "sway/config" },
+  { glob = "tmux.conf" },
+  { glob = ".bash_history" },
+  { glob = ".bash_login" },
+  { glob = ".bash_logout" },
+  { glob = ".bash_profile" },
+  { glob = ".bashrc" },
+  { glob = ".profile" },
+  { glob = ".zshenv" },
+  { glob = ".zlogin" },
+  { glob = ".zlogout" },
+  { glob = ".zprofile" },
+  { glob = ".zshrc" },
+  { glob = ".zimrc" },
+  { glob = "APKBUILD" },
+  { glob = ".bash_aliases" },
+  { glob = ".Renviron" },
+  { glob = ".xprofile" },
+  { glob = ".xsession" },
+  { glob = ".xsessionrc" },
+  { glob = ".yashrc" },
+  { glob = ".yash_profile" },
+  { glob = ".hushlogin" },
+]
+shebangs = ["sh", "bash", "dash", "zsh"]
+comment-token = "#"
+language-servers = [ "bash-language-server" ]
+indent = { tab-width = 2, unit = "  " }
+
+```
+---
+
+#### ESLint
+Installation: 
+
+`npm i -g vscode-langservers-extracted`
+
+Read more:
+[vscode-langservers-extracted](https://github.com/hrsh7th/vscode-langservers-extracted)
+
+Append `vscode-eslint-language-server` to your `language-servers`
+
+languages.toml
+```.toml
+[language-server.eslint]
+command = "vscode-eslint-language-server"
+args = ["--stdio"]
+
+[language-server.vscode-eslint-language-server.config]
+validate = "on"
+experimental = { useFlatConfig = false }
+rulesCustomizations = []
+run = "onType"
+problems = { shortenToSingleLine = false }
+nodePath = ""
+
+[language-server.vscode-eslint-language-server.config.codeAction.disableRuleComment]
+enable = true
+location = "separateLine"
+
+[language-server.vscode-eslint-language-server.config.codeAction.showDocumentation]
+enable = true
+
+[language-server.vscode-eslint-language-server.config.workingDirectory]
+mode = "location"
+
+[[language]]
+name = "jsx"
+scope = "source.jsx"
+injection-regex = "jsx"
+language-id = "javascriptreact"
+file-types = ["jsx"]
+roots = [ "package.json" ]
+comment-token = "//"
+block-comment-tokens = { start = "/*", end = "*/" }
+language-servers = [ "vscode-eslint-language-server" ]
+indent = { tab-width = 2, unit = "  " }
+grammar = "javascript"
+formatter = { command = "dprint", args = [ "fmt", "--stdin", "tsx" ] }
+auto-format = true
+```
+
+---
 #### HTML, CSS, and SCSS
 Installation: 
 
@@ -55,6 +188,38 @@ indent = { tab-width = 2, unit = "  " }
 name = "html"
 source = { git = "https://github.com/tree-sitter/tree-sitter-html", rev = "29f53d8f4f2335e61bf6418ab8958dac3282077a" }
 ```
+---
+
+#### Emmet
+Installation: 
+```.sh
+npm install -g emmet-ls
+```
+
+Read more:
+[emmet-ls](https://github.com/aca/emmet-ls)
+
+Append `emmet-ls` to your `language-servers`
+
+languages.toml
+```.toml
+[language-server.emmet-ls]
+command = "emmet-ls"
+args = [ "--stdio" ]
+file-type = ['html', 'tsx', 'jsx', 'css', 'sass']
+config = { format = {"output.selfClosingStyle" = "html", "output.inlineBreak" = 0, "markup.href" = false} }
+
+[[language]]
+name = "html"
+scope = "source.html"
+injection-regex = "html"
+file-types = ["html", "htm", "shtml", "xhtml", "xht", "jsp", "asp", "aspx", "jshtm", "volt", "rhtml", "cshtml"]
+block-comment-tokens = { start = "<!--", end = "-->" }
+language-servers = ["emmet-ls"]
+auto-format = true
+indent = { tab-width = 2, unit = "  " }
+```
+
 ---
 
 #### Kotlin
@@ -326,6 +491,64 @@ indent = { tab-width = 4, unit = "    " }
 [[grammar]]
 name = "python"
 source = { git = "https://github.com/tree-sitter/tree-sitter-python", rev = "4bfdd9033a2225cc95032ce77066b7aeca9e2efc" }
+```
+
+---
+
+#### TailwindCSS
+Installation: 
+```.sh
+npm i @tailwindcss/language-server
+```
+
+Read more:
+[tailwindcss-intellisense](https://github.com/tailwindlabs/tailwindcss-intellisense)
+
+Append `emmet-ls` to your `language-servers`
+
+languages.toml
+```.toml
+[language-server.tailwindcss-ls]
+command = "tailwindcss-language-server"
+args = ["--stdio"]
+
+[[language]]
+name = "css"
+scope = "source.css"
+injection-regex = "css"
+file-types = ["css", "scss"]
+block-comment-tokens = { start = "/*", end = "*/" }
+language-servers = [ "tailwindcss-ls" ]
+auto-format = true
+indent = { tab-width = 2, unit = "  " }
+
+[[language]]
+name = "html"
+scope = "source.html"
+injection-regex = "html"
+file-types = ["html", "htm", "shtml", "xhtml", "xht", "jsp", "asp", "aspx", "jshtm", "volt", "rhtml", "cshtml"]
+block-comment-tokens = { start = "<!--", end = "-->" }
+language-servers = ["tailwindcss-ls"]
+auto-format = true
+indent = { tab-width = 2, unit = "  " }
+
+# For JSX
+[[language]]
+name = "jsx"
+scope = "source.jsx"
+injection-regex = "jsx"
+language-id = "javascriptreact"
+file-types = ["jsx"]
+roots = [ "package.json" ]
+comment-token = "//"
+block-comment-tokens = { start = "/*", end = "*/" }
+language-servers = ["tailwindcss-ls"]
+indent = { tab-width = 2, unit = "  " }
+grammar = "javascript"
+formatter = { command = "dprint", args = [ "fmt", "--stdin", "tsx" ] }
+auto-format = true
+
+
 ```
 ### Config.toml
 
