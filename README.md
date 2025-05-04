@@ -547,7 +547,7 @@ indent = { tab-width = 2, unit = "  " }
 grammar = "javascript"
 formatter = { command = "dprint", args = [ "fmt", "--stdin", "tsx" ] }
 auto-format = true
-
+````
 
 ---
 
