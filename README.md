@@ -549,11 +549,128 @@ formatter = { command = "dprint", args = [ "fmt", "--stdin", "tsx" ] }
 auto-format = true
 
 
+---
+
+#### Svelte
+Installation: 
+```.sh
+npm i -g svelte-language-server
+```
+
+Read more:
+[Svelte Languange Server](https://www.npmjs.com/package/svelte-language-server)
+[Svelte Languange Tools](https://github.com/sveltejs/language-tools)
+
+Append `svelteserver` to your `language-servers`
+
+languages.toml
+```.toml
+[language-server.svelteserver]
+command = "svelteserver"
+args = ["--stdio"]
+
+[language-server.svelteserver.config.configuration.typescript]
+inlayHints.parameterTypes.enabled = true
+inlayHints.variableTypes.enabled = true
+inlayHints.propertyDeclarationTypes.enabled = true
+inlayHints.functionLikeReturnTypes.enabled = true
+inlayHints.enumMemberValues.enabled = true
+inlayHints.parameterNames.enabled = "all"
+
+[language-server.svelteserver.config.configuration.javascript]
+inlayHints.parameterTypes.enabled = true
+inlayHints.variableTypes.enabled = true
+inlayHints.propertyDeclarationTypes.enabled = true
+inlayHints.functionLikeReturnTypes.enabled = true
+inlayHints.enumMemberValues.enabled = true
+inlayHints.parameterNames.enabled = "all"
+
+[[language]]
+name = "svelte"
+scope = "source.svelte"
+injection-regex = "svelte"
+file-types = ["svelte"]
+indent = { tab-width = 2, unit = "  " }
+comment-token = "//"
+block-comment-tokens = { start = "/*", end = "*/" }
+language-servers = [ "svelteserver" ]
+
+[[grammar]]
+name = "svelte"
+source = { git = "https://github.com/Himujjal/tree-sitter-svelte", rev = "60ea1d673a1a3eeeb597e098d9ada9ed0c79ef4b" }
 ```
 ### Config.toml
+```.toml
+# Set editor theme
+theme = "carbon"
 
-### Key Bindings
+[keys.normal]
+# Move line up or down with Ctrl-j or Ctrl-k
+C-j = ["extend_to_line_bounds", "delete_selection", "paste_after"]
+C-k = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before"]
+
+# For lazygit
+C-g = [":new", ":insert-output lazygit", ":buffer-close!", ":redraw"]
+
+# Redraw
+C-r = ":redraw"
+
+# Vertical Split
+C-v = "vsplit"
+
+# Horizontal Split
+C-h = "hsplit"
+
+# Global search
+# S-d = ['yank_to_clipboard', 'global_search', ':run-shell-command pbpaste']
+
+# For pasting ipconfig
+C-p = [":run-shell-command ifconfig | grep '192' | pbcopy"]
+
+# Disable Arrow keys
+up = "no_op"
+down = "no_op"
+left = "no_op"
+right = "no_op"
+pageup = "no_op"
+pagedown = "no_op"
+home = "no_op"
+end = "no_op"
+
+[keys.insert]
+# Exit insert mode
+"A-i" = "normal_mode"
+
+# Disable Arrow keys
+up = "no_op"
+down = "no_op"
+left = "no_op"
+right = "no_op"
+pageup = "no_op"
+pagedown = "no_op"
+home = "no_op"
+end = "no_op"
+
+[editor]
+# Enable Inline dignostics
+end-of-line-diagnostics = "hint"
+# Disable mouse
+mouse = false
+# Disable middle click paste
+middle-click-paste = false
+
+# Set inline diagnostics severity
+[editor.inline-diagnostics]
+cursor-line = "error"
+
+# Configure the status line
+[editor.statusline]
+right = ["total-line-numbers", "diagnostics", "selections", "position", "file-type"]
+  
+```
 
 ### Tools
+1. [Lazygit](https://github.com/jesseduffield/lazygit)
+2. [Tig](https://github.com/jonas/tig)
 
 ## Do you have a configuration that is not included here? Share it with the community 😉.
