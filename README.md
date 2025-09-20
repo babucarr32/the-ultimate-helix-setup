@@ -27,6 +27,32 @@ language-servers = ["ada-language-server"]
 ```
 ---
 
+#### Ada Lang GPR
+1. Goto the [release](https://github.com/AdaCore/ada_language_server/releases) page download the asset based on your OS. 
+2. Move the all the files inside your darwin(if you are using macOS) folder into `/usr/local/bin`
+
+Read more: [ada_language_server](https://github.com/AdaCore/ada_language_server?tab=readme-ov-file#install)
+
+Append `ada-gpr-language-server` to your `language-servers`
+
+languages.toml
+```.toml 
+[language-server.ada-gpr-language-server]
+command = "ada-language-server"
+args = ["--language-gpr"]
+
+[[language]]
+name = "gpr"
+scope = "source.gpr"
+injection-regex = "gpr"
+file-types = ["gpr"]
+roots = ["alire.toml"]
+comment-token = "--"
+indent = { tab-width = 3, unit = "   " }
+language-servers = ["ada-gpr-language-server"]
+```
+---
+
 #### Bash
 Installation: 
 
@@ -117,7 +143,7 @@ Installation:
 Read more:
 [vscode-langservers-extracted](https://github.com/hrsh7th/vscode-langservers-extracted)
 
-Append `vscode-eslint-language-server` to your `language-servers`
+Append `vscogpr-de-eslint-language-server` to your `language-servers`
 
 languages.toml
 ```.toml
