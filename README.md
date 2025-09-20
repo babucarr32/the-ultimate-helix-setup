@@ -53,6 +53,34 @@ language-servers = ["ada-gpr-language-server"]
 ```
 ---
 
+#### Amber
+1. Goto the [amber-lsp](https://github.com/amber-lang/amber-lsp#) github repo and clone the project.
+2. `cd` into the project and run `cargo build`. You will find the `amber-lsp` executable in the `target` directory.
+3. Move the `amber-lsp` into `/usr/local/bin` (for macOS users) or `/usr/bin` (for Linux users)
+```txt
+Note: On Windows, you’d instead put the .exe somewhere in your PATH (e.g., C:\Program Files\ or a custom tools folder).
+```
+
+Read more:
+[amber-lsp](https://github.com/amber-lang/amber-lsp#)
+[amber](https://docs.amber-lang.com/by_example/lsp_installer)
+
+Append `amber-lsp` to your `language-servers`
+
+languages.toml
+```.toml 
+[language-server.amber-lsp]
+command = "amber-lsp"
+
+[[language]]
+name = "amber"
+scope = "source.ab"
+file-types = ["ab"]
+comment-token = ["//", "///"]
+indent = { tab-width = 4, unit = "    " }
+language-servers = ["amber-lsp"]
+```
+---
 #### Bash
 Installation: 
 
@@ -163,7 +191,36 @@ nodePath = ""
 enable = true
 location = "separateLine"
 
-[language-server.vscode-eslint-language-server.config.codeAction.showDocumentation]
+#### Amber
+1. Goto the [amber-lsp](https://github.com/amber-lang/amber-lsp#) github repo and clone the project.
+2. `cd` into the project and run `cargo build`. You will find the `amber-lsp` executable in the `target` directory.
+3. Move the `amber-lsp` into `/usr/local/bin` (for macOS users) or `/usr/bin` (for Linux users)
+```txt
+Note: On Windows, you’d instead put the .exe somewhere in your PATH (e.g., C:\Program Files\ or a custom tools folder).
+```
+
+Read more:
+[amber-lsp](https://github.com/amber-lang/amber-lsp#)
+[amber](https://docs.amber-lang.com/by_example/lsp_installer)
+
+Append `amber-lsp` to your `language-servers`
+
+languages.toml
+```.toml 
+[language-server.amber-lsp]
+command = "amber-lsp"
+
+[[language]]
+name = "amber"
+scope = "source.ab"
+file-types = ["ab"]
+comment-token = ["//", "///"]
+indent = { tab-width = 4, unit = "    " }
+language-servers = ["amber-lsp"]
+```
+---
+#### Bash
+vscode-eslint-language-server.config.codeAction.showDocumentation]
 enable = true
 
 [language-server.vscode-eslint-language-server.config.workingDirectory]
