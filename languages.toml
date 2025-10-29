@@ -1,3 +1,83 @@
+# Add this to your ~/.config/helix/languages.toml file
+
+# [language-server.simple-lsp]
+# command = "node"
+# args = ["/Users/baboucarr/Documents/programs/javascript/simple-lsp/out/server.js", "--stdio"]
+
+# [language-server.react-snippets-lsp]
+# command = "node"
+# args = ["/Users/baboucarr/Documents/programs/javascript/react-snippets-lsp/out/server.js", "--stdio"]
+
+[language-server.tslsp]
+command = "node"
+args = ["/Users/baboucarr/Documents/programs/forks/typescript-language-server/lib/cli.mjs", "--stdio"]
+
+[language-server.react-snippets-lsp]
+command = "react-snippets-lsp"
+args = ["--stdio"]
+
+[language-server.typescript-language-server]
+command = "typescript-language-server"
+args = ["--stdio"]
+config.hostInfo = "helix"
+config.tsserver.logDirectory = "/tmp/tsserver.log"
+config.tsserver.logVerbosity = "verbose"
+config.tsserver.trace = "verbose"
+ 
+[language-server.typescript-language-server.config.typescript.completions]
+completeFunctionCalls = true
+
+[language-server.typescript-language-server.config.typescript.inlayHints]
+includeInlayEnumMemberValueHints = true
+includeInlayFunctionLikeReturnTypeHints = true
+includeInlayFunctionParameterTypeHints = true
+includeInlayParameterNameHints = "all"
+includeInlayParameterNameHintsWhenArgumentMatchesName = true
+includeInlayPropertyDeclarationTypeHints = true
+includeInlayVariableTypeHints = true
+
+[language-server.typescript-language-server.config.javascript.inlayHints]
+includeInlayEnumMemberValueHints = true
+includeInlayFunctionLikeReturnTypeHints = true
+includeInlayFunctionParameterTypeHints = true
+includeInlayParameterNameHints = "all"
+includeInlayParameterNameHintsWhenArgumentMatchesName = true
+includeInlayPropertyDeclarationTypeHints = true
+includeInlayVariableTypeHints = true
+
+[language-server.svelteserver]
+command = "svelteserver"
+args = ["--stdio"]
+
+[language-server.svelteserver.config.configuration.typescript]
+inlayHints.parameterTypes.enabled = true
+inlayHints.variableTypes.enabled = true
+inlayHints.propertyDeclarationTypes.enabled = true
+inlayHints.functionLikeReturnTypes.enabled = true
+inlayHints.enumMemberValues.enabled = true
+inlayHints.parameterNames.enabled = "all"
+
+[language-server.svelteserver.config.configuration.javascript]
+inlayHints.parameterTypes.enabled = true
+inlayHints.variableTypes.enabled = true
+inlayHints.propertyDeclarationTypes.enabled = true
+inlayHints.functionLikeReturnTypes.enabled = true
+inlayHints.enumMemberValues.enabled = true
+inlayHints.parameterNames.enabled = "all"
+
+[language-server.graphql-language-service-cli]
+command = "graphql-lsp"
+args = ["server", "-m", "stream"] 
+
+[language-server.dart]
+command = "dart"
+args = ["language-server", "--client-id=helix"] 
+
+# LSP TESTING
+[language-server.lsp-demo]
+command = "npx"
+args = ["ts-node", "/Users/baboucarr/Documents/programs/forks/javaScript/lsp-from-scratch/server/src/server.ts"]
+
 [language-server.kotlin-language-server]
 command = "kotlin-language-server"
 
@@ -17,6 +97,9 @@ args = ["lsp"]
 [language-server.vale-ls]
 command = "vale-ls"
 
+[language-server]
+biome = { command = "npx", args = ["biome", "lsp-proxy"] }
+
 [language-server.typos]
 command = "typos-lsp"
 environment = {"RUST_LOG" = "debug"}
@@ -31,7 +114,7 @@ config = { format = {"output.selfClosingStyle" = "html", "output.inlineBreak" = 
 
 [[grammar]]
 name = "javascript"
-source = { git = "https://github.com/tree-sitter/tree-sitter-javascript", rev = "f772967f7b7bc7c28f845be2420a38472b16a8ee" }
+source = { git = "https://github.com/tree-sitter/tree-sitter-javascript", rev = "3a837b6f3658ca3618f2022f8707e29739c91364" }
 
 [[grammar]]
 name = "typescript"
@@ -41,9 +124,55 @@ source = { git = "https://github.com/tree-sitter/tree-sitter-typescript", rev = 
 command = "tailwindcss-language-server"
 args = ["--stdio"]
 
-[language-server.eslint]
+# [language-server.eslint]
+# command = "vscode-eslint-language-server"
+# args = ["--stdio"]
+
+[language-server.vscode-eslint-language-server]
 command = "vscode-eslint-language-server"
 args = ["--stdio"]
+
+[language-server.vscode-eslint-language-server.config]
+validate = "on"
+experimental = { useFlatConfig = false }
+rulesCustomizations = []
+run = "onType"
+problems = { shortenToSingleLine = false }
+nodePath = ""
+
+[language-server.vscode-eslint-language-server.config.codeAction.disableRuleComment]
+enable = true
+location = "separateLine"
+
+[language-server.vscode-eslint-language-server.config.codeAction.showDocumentation]
+enable = true
+
+[language-server.vscode-eslint-language-server.config.workingDirectory]
+mode = "location"
+
+[[language]]
+name = "svelte"
+scope = "source.svelte"
+injection-regex = "svelte"
+file-types = ["svelte"]
+indent = { tab-width = 2, unit = "  " }
+comment-token = "//"
+block-comment-tokens = { start = "/*", end = "*/" }
+language-servers = [ "svelteserver" ]
+
+[[grammar]]
+name = "svelte"
+source = { git = "https://github.com/Himujjal/tree-sitter-svelte", rev = "60ea1d673a1a3eeeb597e098d9ada9ed0c79ef4b" }
+
+[[language]]
+name = "graphql"
+scope = "source.graphql"
+injection-regex = "graphql"
+file-types = ["gql", "graphql", "graphqls"]
+language-servers = [ "graphql-lsp" ]
+comment-token = "#"
+block-comment-tokens = { start = "\"\"\"", end = "\"\"\"" }
+indent = { tab-width = 2, unit = "  " }
 
 [[language]]
 name = "bash"
@@ -101,23 +230,23 @@ comment-token = "#"
 language-servers = [ "bash-language-server" ]
 indent = { tab-width = 2, unit = "  " }
 
-[language-server.vscode-eslint-language-server.config]
-validate = "on"
-experimental = { useFlatConfig = false }
-rulesCustomizations = []
-run = "onType"
-problems = { shortenToSingleLine = false }
-nodePath = ""
+# [language-server.vscode-eslint-language-server.config]
+# validate = "on"
+# experimental = { useFlatConfig = false }
+# rulesCustomizations = []
+# run = "onType"
+# problems = { shortenToSingleLine = false }
+# nodePath = ""
 
-[language-server.vscode-eslint-language-server.config.codeAction.disableRuleComment]
-enable = true
-location = "separateLine"
+# [language-server.vscode-eslint-language-server.config.codeAction.disableRuleComment]
+# enable = true
+# location = "separateLine"
 
-[language-server.vscode-eslint-language-server.config.codeAction.showDocumentation]
-enable = true
+# [language-server.vscode-eslint-language-server.config.codeAction.showDocumentation]
+# enable = true
 
-[language-server.vscode-eslint-language-server.config.workingDirectory]
-mode = "location"
+# [language-server.vscode-eslint-language-server.config.workingDirectory]
+# mode = "location"
 
 [language-server.vscode-json-language-server.config]
 json = { validate = { enable = true }, format = { enable = true } }
@@ -130,6 +259,21 @@ less = { validate = { enable = true } }
 provideFormatter = true
 
 [[language]]
+name = "dart"
+scope = "source.dart"
+file-types = ["dart"]
+roots = ["pubspec.yaml"]
+auto-format = true
+comment-tokens = ["//", "///"]
+block-comment-tokens = { start = "/*", end = "*/" }
+language-servers = [ "dart" ]
+indent = { tab-width = 2, unit = "  " }
+
+[[grammar]]
+name = "dart"
+source = { git = "https://github.com/UserNobody14/tree-sitter-dart", rev = "e398400a0b785af3cf571f5a57eccab242f0cdf9" }
+
+[[language]]
 name = "jsx"
 scope = "source.jsx"
 injection-regex = "jsx"
@@ -138,7 +282,7 @@ file-types = ["jsx"]
 roots = [ "package.json" ]
 comment-token = "//"
 block-comment-tokens = { start = "/*", end = "*/" }
-language-servers = [ "typescript-language-server", "vscode-eslint-language-server", "tailwindcss-ls", "typos" ]
+language-servers = [ { name = "typescript-language-server", except-features = [ "format" ] }, "biome", "vscode-eslint-language-server", "tailwindcss-ls", "typoss", "simple-lspp", "emmet-ls" ]
 indent = { tab-width = 2, unit = "  " }
 grammar = "javascript"
 formatter = { command = "dprint", args = [ "fmt", "--stdin", "tsx" ] }
@@ -152,11 +296,13 @@ roots = ["settings.gradle", "settings.gradle.kts"]
 comment-token = "//"
 block-comment-tokens = { start = "/*", end = "*/" }
 indent = { tab-width = 4, unit = "    " }
+formatter = { command = "ktfmt", args = [ "--kotlinlang-style" ] }
+auto-format = true
 language-servers = [ "kotlin-language-server" ]
 
 [[grammar]]
 name = "kotlin"
-source = { git = "https://github.com/fwcd/tree-sitter-kotlin", rev = "a4f71eb9b8c9b19ded3e0e9470be4b1b77c2b569" }
+source = { git = "https://github.com/fwcd/tree-sitter-kotlin", rev = "c4ddea359a7ff4d92360b2efcd6cfce5dc25afe6" }
 
 [[language]]
 name = "markdown"
@@ -166,7 +312,7 @@ language-servers = ["vale-ls"]
 name = "txt"
 scope = "source.txt"
 file-types = ["txt"]
-language-servers = ["typos", "vale-ls"]
+language-servers = ["typoss", "vale-ls"]
 
 [[language]]
 name = "typescript"
@@ -178,7 +324,7 @@ shebangs = ["deno", "bun", "ts-node"]
 roots = [ "package.json", "tsconfig.json" ]
 comment-token = "//"
 block-comment-tokens = { start = "/*", end = "*/" }
-language-servers = [ "typescript-language-server", "vscode-eslint-language-server", "typos", "vale-ls"]
+language-servers = [ { name = "typescript-language-server", except-features = [ "format" ] }, "biome", "vscode-eslint-language-server", "typoss", "vale-ls", "react-snippets-lsp", "simple-lspp"]
 indent = { tab-width = 2, unit = "  " }
 formatter = { command = "dprint", args = [ "fmt", "--stdin", "tsx" ] }
 auto-format = true
@@ -193,7 +339,7 @@ shebangs = ["node"]
 roots = [ "package.json" ]
 comment-token = "//"
 block-comment-tokens = { start = "/*", end = "*/" }
-language-servers = [ "typescript-language-server", "vscode-eslint-language-server", "typos", "vale-ls"]
+language-servers = [ { name = "typescript-language-server", except-features = [ "format" ] }, "biome", "vscode-eslint-language-server", "typoss", "vale-ls", "simple-lspp"]
 indent = { tab-width = 2, unit = "  " }
 formatter = { command = "dprint", args = [ "fmt", "--stdin", "tsx" ] }
 auto-format = true
@@ -211,14 +357,14 @@ file-types = ["tsx"]
 roots = [ "package.json", "tsconfig.json" ]
 comment-token = "//"
 block-comment-tokens = { start = "/*", end = "*/" }
-language-servers = [ "typescript-language-server", "vscode-eslint-language-server", "emmet-ls", "tailwindcss-ls", "typos", "vale-ls"]
+language-servers = [ { name = "typescript-language-server", except-features = [ "format" ] }, "biome", "vscode-eslint-language-server", "emmet-ls", "tailwindcss-ls", "typoss", "react-snippets-lsp", "simple-lsp"]
 indent = { tab-width = 2, unit = "  " }
 formatter = { command = "dprint", args = [ "fmt", "--stdin", "tsx" ] }
 auto-format = true
 
 [[grammar]]
 name = "tsx"
-source = { git = "https://github.com/tree-sitter/tree-sitter-typescript", rev = "b1bf4825d9eaa0f3bdeb1e52f099533328acfbdf", subpath = "tsx" }
+source = { git = "https://github.com/tree-sitter/tree-sitter-typescript", rev = "75b3874edb2dc714fb1fd77a32013d0f8699989f", subpath = "tsx" }
 
 
 [[language]]
