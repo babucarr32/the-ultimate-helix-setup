@@ -1,28 +1,88 @@
-theme = "ayu_evolve"
+theme = "andromeda"
 
 [keys.normal]
 C-j = ["extend_to_line_bounds", "delete_selection", "paste_after"]
 C-k = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before"]
 
+# After shrink selections enter select mode
+A-x = ["shrink_to_line_bounds", "select_mode"]
+
 # For lazygit
 C-g = [":new", ":insert-output lazygit", ":buffer-close!", ":redraw"]
 
+# Redraw
+C-r = ":redraw"
+
+# Vertical Split
+C-v = "vsplit"
+
+# Horizontal Split
+C-h = "hsplit"
+
+# Yank to clipboard
+S-y = "yank_to_clipboard"
+
+# Goto end of line
+S-l = "goto_line_end"
+
+# Goto end of start
+S-h = "goto_line_start"
+
+# Past from clipboard
+A-p = "paste_clipboard_after"
+
+# Reload all
+A-r = ":reload-all"
+
+# Navigate window
+A-k = "jump_view_up"
+A-j = "jump_view_down"
+A-l = "jump_view_right"
+A-h = "jump_view_left"
+
+# JSX comment
+S-d = ["toggle_block_comments", "surround_add"]
+
+# Global search
+A-f = ["yank_to_clipboard", "global_search"]
+
 # For pasting ipconfig
 C-p = [":run-shell-command ifconfig | grep '192' | pbcopy"]
+
 # "A-y" = ["hover", "select_all"]
 # Disable Arrow keys
 up = "no_op"
-down = "no_op"
-left = "no_op"
-right = "no_op"
-pageup = "no_op"
-pagedown = "no_op"
-home = "no_op"
 end = "no_op"
+right = "no_op"
+down = "no_op"
+pagedown = "no_op"
+left = "no_op"
+home = "no_op"
+pageup = "no_op"
 
 [keys.insert]
 # Exit insert mode
 "A-i" = "normal_mode"
+
+# After shrink selections enter select mode
+A-x = ["shrink_to_line_bounds", "select_mode"]
+
+[keys.select]
+# After shrink selections enter select mode
+A-x = ["shrink_to_line_bounds", "select_mode"]
+
+# -----If you have---
+# hello
+# a
+# testing
+# hi
+#
+# ----After sorting by length, you'll get ----
+# a
+# hi
+# hello
+# testing
+"S-h" = [":pipe awk '{ print length, $0 }' | sort -n | cut -d' ' -f2-"]
 
 # Disable Arrow keys
 up = "no_op"
@@ -38,6 +98,14 @@ end = "no_op"
 end-of-line-diagnostics = "hint"
 mouse = false
 middle-click-paste = false
+# Show indentation lines
+indent-guides.render = true
+# indent-guides.character = "│"  # Character to use for the guide line
+# indent-guides.skip-levels = 0  # Number of indent levels to skip
+# "│" - Default vertical line
+# "┆" - Dashed vertical line
+# "┊" - Dotted vertical line
+# "|" - Simple pipe characte
 
 [editor.inline-diagnostics]
 cursor-line = "error"
@@ -47,4 +115,4 @@ cursor-line = "error"
 right = ["total-line-numbers", "diagnostics", "selections", "position", "file-type"]
 
 [editor.file-picker]
-hidden = false
+# hidden = false
