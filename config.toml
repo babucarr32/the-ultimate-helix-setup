@@ -31,6 +31,9 @@ S-h = "goto_line_start"
 # Past from clipboard
 A-p = "paste_clipboard_after"
 
+# Past from clipboard
+A-w = ":write-all"
+
 # Reload all
 A-r = ":reload-all"
 
@@ -39,6 +42,9 @@ A-k = "jump_view_up"
 A-j = "jump_view_down"
 A-l = "jump_view_right"
 A-h = "jump_view_left"
+
+# Easy log like console.log("selected text");
+C-l = ":pipe ~/scripts/logger.sh %{buffer_name}"
 
 # JSX comment
 S-d = ["toggle_block_comments", "surround_add"]
@@ -82,7 +88,7 @@ A-x = ["shrink_to_line_bounds", "select_mode"]
 # hi
 # hello
 # testing
-"S-h" = [":pipe awk '{ print length, $0 }' | sort -n | cut -d' ' -f2-"]
+"S-h" = ["shrink_to_line_bounds", "select_mode", ":pipe awk '{ print length, $0 }' | sort -n | cut -d' ' -f2-"]
 
 # Disable Arrow keys
 up = "no_op"
