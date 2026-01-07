@@ -748,6 +748,44 @@ right = ["total-line-numbers", "diagnostics", "selections", "position", "file-ty
   
 ```
 
+### Scripts
+- [Find and Replace](/scripts/find-and-replace.sh) - Find and replace text.
+Add the following to their respective location
+
+```sh
+# ~/.zshrc
+alias fr="path-to-your/find-and-replace.sh"
+  
+```
+Make it executable
+```sh
+chmod +x "path-to-your/find-and-replace.sh"
+  
+```
+Usage:
+```sh
+# Usage: fr.sh "search_text" "replace_text" [path]
+# Example: fr.sh "foo" "bar" ./src
+  
+```
+
+- [Logger](/scripts/logger.sh) - Easily add log or print statements.
+Add the following to their respective location
+
+Make it executable
+```sh
+chmod +x "path-to/logger.sh"
+```
+  
+```toml
+# ~/.config/helix/config.toml
+[keys.normal]
+C-l = ":pipe path-to/logger.sh %{buffer_name}"
+  
+```
+Usage:
+select a text then hit `Ctrl+l`
+
 ### Tools
 1. [Lazygit](https://github.com/jesseduffield/lazygit)
 2. [Tig](https://github.com/jonas/tig)
