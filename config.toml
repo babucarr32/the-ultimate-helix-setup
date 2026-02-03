@@ -1,4 +1,9 @@
+
 theme = "andromeda"
+
+# Goto popover
+[keys.normal.space]
+"K" = ["goto_hover"]
 
 [keys.normal]
 C-j = ["extend_to_line_bounds", "delete_selection", "paste_after"]
@@ -45,6 +50,12 @@ A-h = "jump_view_left"
 
 # Easy log like console.log("selected text");
 C-l = ":pipe ~/scripts/logger.sh %{buffer_name}"
+
+# Copy current buffer(file) name (strip whitespace/newlines)
+C-n = [":sh echo %{buffer_name} | tr -d '\\n' | pbcopy"]
+
+# Delete current buffer
+A-backspace = [":sh rm %{buffer_name}", ":buffer-close"]
 
 # JSX comment
 S-d = ["toggle_block_comments", "surround_add"]
@@ -101,6 +112,8 @@ home = "no_op"
 end = "no_op"
 
 [editor]
+# Welcome screen
+welcome-screen = true
 end-of-line-diagnostics = "hint"
 mouse = false
 middle-click-paste = false
@@ -122,3 +135,8 @@ right = ["total-line-numbers", "diagnostics", "selections", "position", "file-ty
 
 [editor.file-picker]
 # hidden = false
+
+[editor.inline-blame]
+show = "cursor-line"
+auto-fetch = true
+format = "{author}, {time-ago} • {title} • {commit}"
