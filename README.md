@@ -541,13 +541,28 @@ Install ruff
 ```.sh
 pipx install ruff
 ```
+
+Append `ruff, jedi, pylsp` to your `language-servers`
+
+Install pylsp-mypy
+```.sh
+pip install pylsp-mypy
+```
+
+Add the following in your `pyproject.toml` file
+```.toml
+[tool.pylsp-mypy]
+enabled = true
+live_mode = true
+strict = true
+```
+
 Read more:
 [pipx](https://pipx.pypa.io/stable/)
 [python-lsp-server](https://github.com/python-lsp/python-lsp-server)
 [ruff](https://docs.astral.sh/ruff/)
 [python-lsp-ruff](https://github.com/python-lsp/python-lsp-ruff)
-
-Append `ruff, jedi, pylsp` to your `language-servers`
+[pylsp-mypy](https://github.com/python-lsp/pylsp-mypy)
 
 languages.toml
 ```.toml
